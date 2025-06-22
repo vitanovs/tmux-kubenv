@@ -4,6 +4,8 @@ A [TMUX](https://github.com/tmux/tmux) plugin indicating the current [Kubernetes
 
 :white_check_mark: Per-`pane` context with automatic updates based on configuration _switches_ and _changes_.
 
+![demo](https://github.com/vitanovs/tmux-kubenv/blob/main/docs/media/tmux_kubenv_demo.gif)
+
 ## Installation
 
 Using the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) to manage the configuration:

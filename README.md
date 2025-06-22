@@ -1,2 +1,32 @@
 # tmux-kubenv
-Kubernetes environment indicator.
+
+A [TMUX](https://github.com/tmux/tmux) plugin indicating the current [Kubernetes](https://kubernetes.io) context in use.
+
+:white_check_mark: Per-`pane` context with automatic updates based on configuration _switches_ and _changes_.
+
+## Installation
+
+Using the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) to manage the configuration:
+
+- _add_ the _plugin_ to your `~/.tmux.conf`:
+
+  ```sh
+  set -g @plugin 'vitanovs/tmux-kubenv'
+  ```
+
+- _install_ with `<prefix> + I`
+
+Once installed, instrument:
+
+- `.tmux.conf` with `kubenv.tmux` utility to display the current context in your status line:
+
+  ```sh
+  set -g status-left "#(/bin/sh ~/.tmux/plugins/tmux-kubenv/kubenv.tmux)"
+  ```
+
+- `.zshrc` to _enable_ the __automatic__ context _updates_:
+
+  ```sh
+  source ~/.tmux/plugins/tmux-kubenv/scripts/hook_zsh.sh
+  tmux_kubenv_precmd_hook_enable > /dev/null
+  ```

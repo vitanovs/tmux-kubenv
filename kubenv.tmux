@@ -6,6 +6,8 @@
 
 OPTION_KUBECONFIG="@tmux_kubenv_kubeconfig"
 
+OPTION_TITLE="@tmux_kubenv_title"
+
 OPTION_COLOR_TITLE="@tmux_kubenv_color_title"
 OPTION_COLOR_CONTEXT_FG="@tmux_kubenv_color_context_fg"
 OPTION_COLOR_CONTEXT_BG="@tmux_kubenv_color_context_bg"
@@ -32,8 +34,7 @@ tmux_kubenv_get_tmux_option() {
 # Settings
 # ================================
 
-TMUX_KUBENV_TITLE_KUBERNETES="Kubernetes"
-TMUX_KUBENV_TITLE_KUBERNETES_SHORT="K8s"
+TMUX_KUBENV_TITLE_KUBERNETES=$(tmux_kubenv_get_tmux_option $OPTION_TITLE "Kubernetes")
 
 TMUX_KUBENV_COLOR_KUBERNETES=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_TITLE "#124F76")
 TMUX_KUBENV_COLOR_CONTEXT_BG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_CONTEXT_BG "#124F76")

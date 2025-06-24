@@ -18,10 +18,14 @@ OPTION_COLOR_NAMESPACE_BG="@tmux_kubenv_color_namespace_bg"
 # Utility functions
 # ================================
 
+CONTEXT_PANE="-gpv"
+CONTEXT_GLOBAL="-gv"
+
 tmux_kubenv_get_tmux_option() {
 	local option="$1"
 	local default_value="$2"
-	local value=$(tmux show-options -gpv "$option")
+	local context="$3"
+	local value=$(tmux show-options "$context" "$option")
 
 	if [ "$value" ]; then
 		echo "$value"
@@ -34,13 +38,13 @@ tmux_kubenv_get_tmux_option() {
 # Settings
 # ================================
 
-TMUX_KUBENV_TITLE_KUBERNETES=$(tmux_kubenv_get_tmux_option $OPTION_TITLE "Kubernetes")
+TMUX_KUBENV_TITLE_KUBERNETES=$(tmux_kubenv_get_tmux_option $OPTION_TITLE "Kubernetes" $CONTEXT_GLOBAL)
 
-TMUX_KUBENV_COLOR_KUBERNETES=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_TITLE "#124F76")
-TMUX_KUBENV_COLOR_CONTEXT_BG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_CONTEXT_BG "#124F76")
-TMUX_KUBENV_COLOR_CONTEXT_FG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_CONTEXT_FG "#00DCEE")
-TMUX_KUBENV_COLOR_NAMESPACE_BG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_NAMESPACE_BG "#124F76")
-TMUX_KUBENV_COLOR_NAMESPACE_FG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_NAMESPACE_FG "#D69F00")
+TMUX_KUBENV_COLOR_KUBERNETES=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_TITLE "#124F76" $CONTEXT_GLOBAL)
+TMUX_KUBENV_COLOR_CONTEXT_BG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_CONTEXT_BG "#124F76" $CONTEXT_GLOBAL)
+TMUX_KUBENV_COLOR_CONTEXT_FG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_CONTEXT_FG "#00DCEE" $CONTEXT_GLOBAL)
+TMUX_KUBENV_COLOR_NAMESPACE_BG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_NAMESPACE_BG "#124F76" $CONTEXT_GLOBAL)
+TMUX_KUBENV_COLOR_NAMESPACE_FG=$(tmux_kubenv_get_tmux_option $OPTION_COLOR_NAMESPACE_FG "#D69F00" $CONTEXT_GLOBAL)
 
 TMUX_KUBENV_PROMPT_NO_CONTENT="N/A"
 
@@ -137,7 +141,7 @@ tmux_kubenv_get_kubeconfig_namespace() {
 }
 
 tmux_kubenv() {
-	local kubeconfig=$(tmux_kubenv_get_tmux_option "$OPTION_KUBECONFIG" "")
+	local kubeconfig=$(tmux_kubenv_get_tmux_option "$OPTION_KUBECONFIG" "" $CONTEXT_PANE)
 	if [ -z "$kubeconfig" ]; then
 		echo $(tmux_kubenv_get_prompt $TMUX_KUBENV_PROMPT_NO_CONTENT $TMUX_KUBENV_PROMPT_NO_CONTENT)
 		return 0

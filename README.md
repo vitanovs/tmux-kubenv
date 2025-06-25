@@ -37,11 +37,11 @@ Once installed, instrument:
 
 The plugin supports the following `global` configuration options:
 
-| Title                             | Description                                       |  Default     |
+| Name                              | Description                                       |  Default     |
 | :-------------------------------- | :------------------------------------------------ | :----------: |
 | `@tmux_kubenv_title`              | The _plugin_ title displayed in the status line   | `Kubernetes` |
-| `@tmux_kubenv_color_title`        | The _color_ of the _plugin_ title                 | `#124F76"`   |
-| `@tmux_kubenv_color_context_fg`   | The _foreground color_ of the _context_ section   | `#124F76"`   |
+| `@tmux_kubenv_color_title`        | The _color_ of the _plugin_ title                 | `#124F76`    |
+| `@tmux_kubenv_color_context_fg`   | The _foreground color_ of the _context_ section   | `#124F76`    |
 | `@tmux_kubenv_color_context_bg`   | The _background color_ of the _context_ section   | `#00DCEE`    |
 | `@tmux_kubenv_color_namespace_fg` | The _foreground color_ of the _namespace_ section | `#124F76`    |
 | `@tmux_kubenv_color_namespace_bg` | The _background color_ of the _namespace_ section | `#D69F00`    |

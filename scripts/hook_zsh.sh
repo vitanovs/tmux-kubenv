@@ -4,7 +4,9 @@ OPTION_KUBECONFIG="@tmux_kubenv_kubeconfig"
 
 tmux_kubenv_precmd_hook() {
 	# Update option with the current KUBECONFIG value
-	tmux set-option -gp "$OPTION_KUBECONFIG" "$KUBECONFIG"
+	if tmux info &> /dev/null; then
+		tmux set-option -gp "$OPTION_KUBECONFIG" "$KUBECONFIG"
+	fi
 }
 
 tmux_kubenv_precmd_hook_enable() {

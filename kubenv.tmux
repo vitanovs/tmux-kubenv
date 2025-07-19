@@ -132,7 +132,10 @@ tmux_kubenv_get_kubeconfig_namespace() {
 	fi
 
 	local namespace=$(kubectl --kubeconfig="$kubeconfig" config view -o jsonpath='{..contexts[?(@.name == "'$context'")].context.namespace}')
-	if [ -z "$namespace" ]; then
+	if [ -z "$namespace" -a -n "$context" ]; then
+		echo "default"
+		return 1
+	elif [ -z "$namespace" -a -z "$contexts" ]; then
 		echo $TMUX_KUBENV_PROMPT_NO_CONTENT
 		return 1
 	fi
